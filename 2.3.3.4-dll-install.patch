@@ -1,0 +1,24 @@
+--- origsrc/clucene-core-2.3.3.4/src/core/CMakeLists.txt	2011-03-16 19:21:07.000000000 -0500
++++ src/clucene-core-2.3.3.4/src/core/CMakeLists.txt	2013-07-30 16:20:12.961881500 -0500
+@@ -282,5 +282,7 @@ ENDIF ( LUCENE_SYS_INCLUDES )
+ 
+ #and install library
+ install(TARGETS clucene-core 
+-        DESTINATION ${LIB_DESTINATION}  
++        LIBRARY DESTINATION ${LIB_DESTINATION}  
++        RUNTIME DESTINATION bin
++        ARCHIVE DESTINATION ${LIB_DESTINATION}  
+         COMPONENT runtime )
+--- origsrc/clucene-core-2.3.3.4/src/shared/CMakeLists.txt	2011-03-16 19:21:07.000000000 -0500
++++ src/clucene-core-2.3.3.4/src/shared/CMakeLists.txt	2013-07-30 16:20:30.978912000 -0500
+@@ -340,7 +340,9 @@ IF ( EXTRA_LIBS )
+ ENDIF ( EXTRA_LIBS )
+ 
+ install(TARGETS clucene-shared 
+-        DESTINATION ${LIB_DESTINATION} 
++        LIBRARY DESTINATION ${LIB_DESTINATION}
++        RUNTIME DESTINATION bin
++        ARCHIVE DESTINATION ${LIB_DESTINATION}
+         COMPONENT development )
+ 
+ IF ( BUILD_STATIC_LIBRARIES )

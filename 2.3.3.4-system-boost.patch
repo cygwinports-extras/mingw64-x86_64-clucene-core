@@ -1,0 +1,16 @@
+--- origsrc/clucene-core-2.3.3.4/src/ext/CMakeLists.txt	2011-03-16 19:21:07.000000000 -0500
++++ src/clucene-core-2.3.3.4/src/ext/CMakeLists.txt	2013-07-30 16:25:54.131395300 -0500
+@@ -3,6 +3,7 @@ PROJECT(clucene-ext)
+ file(GLOB_RECURSE EXTHEADERS ${clucene-ext_SOURCE_DIR}/boost/*.hpp)
+ 
+ #install public headers.
++if(NOT Boost_FOUND)
+ FOREACH(file ${EXTHEADERS})
+ 	get_filename_component(apath ${file} PATH)
+ 	get_filename_component(aname ${file} NAME)
+@@ -12,4 +13,5 @@ FOREACH(file ${EXTHEADERS})
+ 	       DESTINATION "include/CLucene/ext/boost/${relpath}"
+                COMPONENT development)
+ ENDFOREACH(file)
++endif(NOT Boost_FOUND)
+ 

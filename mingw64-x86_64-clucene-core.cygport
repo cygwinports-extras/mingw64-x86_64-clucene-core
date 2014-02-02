@@ -1,0 +1,32 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross cmake
+
+NAME="mingw64-x86_64-clucene-core"
+VERSION=2.3.3.4
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="C++ indexing and searching library for Win64 toolchain"
+DESCRIPTION="Lucene is a high-performance, scalable, cross platform, full-
+featured, open-source indexing and searching API. It is written in C++.
+CLucene is a port of the very popular Java Lucene text search engine API."
+HOMEPAGE="http://clucene.sourceforge.net/"
+SRC_URI="mirror://sourceforge/clucene/clucene-core-${VERSION}.tar.gz"
+SRC_DIR="clucene-core-${VERSION}"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/mingw-clucene.git/plain/mingw-clucene-core-2.3.3.4-fix-threads.patch
+	http://pkgs.fedoraproject.org/cgit/mingw-clucene.git/plain/mingw-clucene-dont-use-pthreads-on-win32.patch
+	2.3.3.4-dll-install.patch
+	2.3.3.4-pkgconfig-libs.patch
+	2.3.3.4-system-boost.patch
+"
+
+CYGCMAKE_ARGS="
+	-DDISABLE_MULTITHREADING:BOOL=ON
+	-D_CL_HAVE_GCC_ATOMIC_FUNCTIONS_EXITCODE=0
+	-D_CL_HAVE_TRY_BLOCKS_EXITCODE=0
+	-D_CL_HAVE_NAMESPACES_EXITCODE=0
+	-D_CL_HAVE_NO_SNWPRINTF_BUG_EXITCODE=0
+	-DLUCENE_STATIC_CONSTANT_SYNTAX_EXITCODE=1
+	-D_CL_HAVE_GCCVISIBILITYPATCH=0
+	-D_CL_HAVE_FUNCTION_SNPRINTF:INTERNAL=0
+"
